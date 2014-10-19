@@ -2,16 +2,12 @@ package com.amadeus.ssd.hosttraceanalyzer.ui;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Font;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import java.awt.SystemColor;
-import java.awt.event.ActionListener;
-import javax.swing.BoxLayout;
 import java.awt.BorderLayout;
 
 public class AboutPage extends JPanel {

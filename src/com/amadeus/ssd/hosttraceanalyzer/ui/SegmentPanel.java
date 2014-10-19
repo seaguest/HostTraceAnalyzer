@@ -1,23 +1,12 @@
 package com.amadeus.ssd.hosttraceanalyzer.ui;
 
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.awt.GridBagConstraints;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
-
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.factories.FormFactory;
 
 import javax.swing.BorderFactory;
 import javax.swing.GroupLayout;
