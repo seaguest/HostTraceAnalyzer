@@ -110,6 +110,7 @@ public class SearchCriteriaPanel extends JPanel implements ActionListener{
 		
 		JScrollPane scrollPane = new JScrollPane();
 		panel_3.add(scrollPane);
+		filteringCondition.setLineWrap(true);
 		
 		filteringCondition.setText("");
 		scrollPane.setViewportView(filteringCondition);

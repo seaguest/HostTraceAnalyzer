@@ -29,7 +29,7 @@ public class HostTraceAnalyzerMain extends JFrame implements ActionListener{
 
 	
 	JButton btnSearchCriteria = new JButton("Search Criteria");
-	JButton btnNewButton = new JButton("Go");
+	JButton btnGo = new JButton("Go");
 	
 	
 	JMenuItem mntmSetting = new JMenuItem("    Setting    ");
@@ -132,7 +132,7 @@ public class HostTraceAnalyzerMain extends JFrame implements ActionListener{
 					.addGap(19)
 					.addComponent(btnSearchCriteria)
 					.addPreferredGap(ComponentPlacement.RELATED, 195, Short.MAX_VALUE)
-					.addComponent(btnNewButton)
+					.addComponent(btnGo)
 					.addGap(62))
 				.addGroup(gl_mainPanel.createSequentialGroup()
 					.addComponent(checkBoxPanel, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE)
@@ -145,7 +145,7 @@ public class HostTraceAnalyzerMain extends JFrame implements ActionListener{
 					.addComponent(checkBoxPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_mainPanel.createParallelGroup(Alignment.BASELINE)
-						.addComponent(btnNewButton)
+						.addComponent(btnGo)
 						.addComponent(btnSearchCriteria))
 					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
@@ -159,11 +159,13 @@ public class HostTraceAnalyzerMain extends JFrame implements ActionListener{
 		outputPanel.add(scrollPane, BorderLayout.CENTER);
 		
 		outputLog.setText("");
+		outputLog.setLineWrap(true);
 		scrollPane.setViewportView(outputLog);
 		
 		mntmSetting.addActionListener(this);
 		mntmAbout.addActionListener(this);
 		btnSearchCriteria.addActionListener(this);
+		btnGo.addActionListener(this);		
 		
 		this.pack();
 		this.setLocationRelativeTo(null);
@@ -185,11 +187,17 @@ public class HostTraceAnalyzerMain extends JFrame implements ActionListener{
 			frame.setLocationRelativeTo(null);
 			frame.setVisible(true);
 		}else if(btnSearchCriteria == ae.getSource()){
-			JFrame frame = new JFrame();
+			JFrame frame = new JFrame("Search Criteria");
 			frame.getContentPane().add(new SearchCriteriaPanel(searchCriteria));
 			frame.pack();
 			frame.setLocationRelativeTo(null);
 			frame.setVisible(true);
-		}	
+		}else if(btnGo == ae.getSource()){
+			outputLog.setText(setting.toString());
+			outputLog.append("\n");
+			outputLog.append(searchCriteria.toString());
+			
+		}
+		
 	}
 }
