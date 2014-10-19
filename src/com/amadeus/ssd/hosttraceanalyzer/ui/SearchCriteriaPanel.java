@@ -8,6 +8,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
@@ -117,13 +118,42 @@ public class SearchCriteriaPanel extends JPanel implements ActionListener{
 		
 	}
 
+	public boolean isInputValid() {
+		for (int i = 0; i < itineraryPanel.elements.size(); i++) {
+			ElementPanel elementPanel = itineraryPanel.elements.get(i);
+			for (int j = 0; j < elementPanel.segments.size(); j++) {
+				SegmentPanel segmentPanel = elementPanel.segments.get(j);
+
+				if (segmentPanel.flight.getText() == null
+						|| segmentPanel.flight.getText().trim().equals("")
+						|| segmentPanel.rbd.getText() == null
+						|| segmentPanel.rbd.getText().trim().equals("")
+						|| segmentPanel.rbd.getText().trim().length() != 1) {
+					return false;
+				}
+				
+				String flight = segmentPanel.flight.getText().trim();		
+				try{
+					Integer.parseInt(flight.substring(2));					
+				}catch(Exception e){
+					return false;
+				}				
+				if(! Character.isLetter(segmentPanel.rbd.getText().trim().charAt(0))){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
+	
 	public void fillSearchCriteriaAndFilteringCondition(){		
 		for(int i = 0; i<itineraryPanel.elements.size(); i++){
 			ElementPanel elementPanel = itineraryPanel.elements.get(i);
 			Element element = new Element(i);
 			for(int j = 0; j<elementPanel.segments.size(); j++){
 				SegmentPanel segmentPanel = elementPanel.segments.get(j);
-				Segment segment = new Segment(j, segmentPanel.flight.getText(), segmentPanel.rbd.getText(), segmentPanel.corporateCode.getText());
+				Segment segment = new Segment(j, segmentPanel.flight.getText().trim(), segmentPanel.rbd.getText().trim(), segmentPanel.corporateCode.getText().trim());
 				element.addSegment(segment); 
 			}
 			this.searchCriteria.addElement(element);
@@ -132,15 +162,30 @@ public class SearchCriteriaPanel extends JPanel implements ActionListener{
 		
 	}
 	
+	
 	@Override
 	public void actionPerformed(ActionEvent ae) {
 		if(btnSave == ae.getSource()){
-			fillSearchCriteriaAndFilteringCondition();
-			
-			System.out.println(searchCriteria);
-			
 		    JFrame root = (JFrame) this.getTopLevelAncestor();
-		    root.dispose();
+
+			if(isInputValid()){
+				fillSearchCriteriaAndFilteringCondition();				
+				
+				System.out.println(searchCriteria);
+				
+			    root.dispose();
+			} else {
+				// custom title, warning icon
+				JOptionPane
+						.showMessageDialog(
+								root,
+								"Valid input:\n"
+										+ "1, flight should be AirlineCode (2 lettes) + flight number (EX: AF123).\n"
+										+ " 2, RBD should be 1 letter.\n"
+										+ "3, Filtering condition should be separated by ; .",
+								"Invalid input!", JOptionPane.WARNING_MESSAGE);
+
+			}
 		}
 		
 	}

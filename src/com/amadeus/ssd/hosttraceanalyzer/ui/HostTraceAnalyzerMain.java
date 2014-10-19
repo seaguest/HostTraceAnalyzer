@@ -31,6 +31,9 @@ public class HostTraceAnalyzerMain extends JFrame implements ActionListener{
 	JButton btnSearchCriteria = new JButton("Search Criteria");
 	JButton btnGo = new JButton("Go");
 	
+	JCheckBox chckbxOneShot = new JCheckBox("One Shot");
+	JCheckBox chckbxOneWayCombinable = new JCheckBox("One Way Combinable");
+
 	
 	JMenuItem mntmSetting = new JMenuItem("    Setting    ");
 	JMenuItem mntmAbout = new JMenuItem("    About    ");
@@ -40,6 +43,9 @@ public class HostTraceAnalyzerMain extends JFrame implements ActionListener{
 
 	Setting setting = new Setting();
 	SearchCriteria searchCriteria = new SearchCriteria();
+	
+	SearchCriteriaPanel searchCriteriaPanel;
+	SettingPage settingPage;
 
 	
 	
@@ -103,9 +109,7 @@ public class HostTraceAnalyzerMain extends JFrame implements ActionListener{
 		
 		
 		JPanel checkBoxPanel = new JPanel();		
-		JCheckBox chckbxOneShot = new JCheckBox("One Shot");
 		
-		JCheckBox chckbxOneWayCombinable = new JCheckBox("One Way Combinable");
 		GroupLayout gl_checkBoxPanel = new GroupLayout(checkBoxPanel);
 		gl_checkBoxPanel.setHorizontalGroup(
 			gl_checkBoxPanel.createParallelGroup(Alignment.LEADING)
@@ -167,6 +171,10 @@ public class HostTraceAnalyzerMain extends JFrame implements ActionListener{
 		btnSearchCriteria.addActionListener(this);
 		btnGo.addActionListener(this);		
 		
+		chckbxOneShot.setSelected(true);
+		chckbxOneShot.addActionListener(this);		
+		chckbxOneWayCombinable.addActionListener(this);		
+		
 		this.pack();
 		this.setLocationRelativeTo(null);
 	}
@@ -176,7 +184,10 @@ public class HostTraceAnalyzerMain extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent ae) {
 		if(mntmSetting == ae.getSource()){
 			JFrame frame = new JFrame("Setting");
-			frame.getContentPane().add(new SettingPage(setting));
+			if(settingPage == null){
+				settingPage = new SettingPage(setting);
+			}			
+			frame.getContentPane().add(settingPage);
 			frame.pack();
 			frame.setLocationRelativeTo(null);
 			frame.setVisible(true);
@@ -187,8 +198,11 @@ public class HostTraceAnalyzerMain extends JFrame implements ActionListener{
 			frame.setLocationRelativeTo(null);
 			frame.setVisible(true);
 		}else if(btnSearchCriteria == ae.getSource()){
-			JFrame frame = new JFrame("Search Criteria");
-			frame.getContentPane().add(new SearchCriteriaPanel(searchCriteria));
+			JFrame frame = new JFrame("Search Criteria");			
+			if(searchCriteriaPanel == null){
+				searchCriteriaPanel = new SearchCriteriaPanel(searchCriteria);				
+			}
+			frame.getContentPane().add(searchCriteriaPanel);			
 			frame.pack();
 			frame.setLocationRelativeTo(null);
 			frame.setVisible(true);
@@ -196,7 +210,22 @@ public class HostTraceAnalyzerMain extends JFrame implements ActionListener{
 			outputLog.setText(setting.toString());
 			outputLog.append("\n");
 			outputLog.append(searchCriteria.toString());
-			
+		}else if(chckbxOneShot == ae.getSource()){
+			if(chckbxOneShot.isSelected()){
+				searchCriteria.setOneShot(true);	
+				chckbxOneWayCombinable.setSelected(false);
+			}else{
+				searchCriteria.setOneShot(false);			
+				chckbxOneWayCombinable.setSelected(true);
+			}			
+		}else if(chckbxOneWayCombinable == ae.getSource()){			
+			if(chckbxOneWayCombinable.isSelected()){
+				searchCriteria.setOneShot(false);		
+				chckbxOneShot.setSelected(false);
+			}else{
+				searchCriteria.setOneShot(true);			
+				chckbxOneShot.setSelected(true);
+			}
 		}
 		
 	}

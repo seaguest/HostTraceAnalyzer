@@ -20,6 +20,7 @@ import java.io.IOException;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import com.amadeus.ssd.hosttraceanalyzer.input.ConfigHelper;
 import com.amadeus.ssd.hosttraceanalyzer.input.Setting;
 
 public class SettingPage extends JPanel implements ActionListener{
@@ -47,7 +48,9 @@ public class SettingPage extends JPanel implements ActionListener{
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					frame.getContentPane().setLayout(new BorderLayout(0, 0));
 					
-					SettingPage window = new SettingPage(null);
+					Setting setting = new Setting();
+
+					SettingPage window = new SettingPage(setting);
 					frame.add(window);
 					
 					frame.setVisible(true);
@@ -185,7 +188,14 @@ public class SettingPage extends JPanel implements ActionListener{
 				System.out.println("No Selection ");
 			}
 			
-		}else if(btnSave == ae.getSource()){			
+		}else if(btnSave == ae.getSource()){		
+			try {
+				ConfigHelper.saveConfig(setting);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			};
+			
 			System.out.println(setting);
 
 			JFrame root = (JFrame) this.getTopLevelAncestor();

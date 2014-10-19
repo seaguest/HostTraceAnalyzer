@@ -5,12 +5,15 @@ import java.util.List;
 
 public class SearchCriteria {
 	
+	boolean isOneShot;
+	
 	List <Element> elements = new ArrayList<Element>();
 
 	FilteringCondition condition;
 
-	public SearchCriteria(List<Element> elements, FilteringCondition condition) {
+	public SearchCriteria(boolean isOneShot, List<Element> elements, FilteringCondition condition) {
 		super();
+		this.isOneShot = isOneShot;
 		this.elements = elements;
 		this.condition = condition;
 	}
@@ -23,11 +26,10 @@ public class SearchCriteria {
 		elements.add(element);
 	}
 
-	
 	@Override
 	public String toString() {
-		return "SearchCriteria [elements=" + elements + ", condition="
-				+ condition + "]";
+		return "SearchCriteria [isOneShot=" + isOneShot + ", elements="
+				+ elements + ", condition=" + condition + "]";
 	}
 
 	public List<Element> getElements() {
@@ -46,6 +48,15 @@ public class SearchCriteria {
 		this.condition = condition;
 	}
 
+	public boolean isOneShot() {
+		return isOneShot;
+	}
+
+	public void setOneShot(boolean isOneShot) {
+		this.isOneShot = isOneShot;
+	}
+
+	
 	
 	
 	
