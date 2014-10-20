@@ -2,5 +2,14 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="D:/dev/java/gui/HostTraceAnalyzer/lib/airshopper-access-jcp-be_v18.0_subcr7101491-LOCAL.jar"/>
+	<classpathentry kind="lib" path="D:/dev/java/gui/HostTraceAnalyzer/lib/airshopper-interface-jcp-be_v18.0_subcr7101491-LOCAL.jar"/>
+	<classpathentry kind="lib" path="D:/dev/java/gui/HostTraceAnalyzer/lib/airshopper-legacy-jcp-be_v18.0_subcr7101491-LOCAL.jar"/>
+	<classpathentry kind="lib" path="D:/dev/java/gui/HostTraceAnalyzer/lib/airshopper-legacy-jcp-be_v18.0_subcr7101491-LOCAL-tests.jar"/>
+	<classpathentry kind="lib" path="D:/dev/java/gui/HostTraceAnalyzer/lib/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="D:/dev/java/gui/HostTraceAnalyzer/lib/connectors-verbhandler-core-2.0.76.jar"/>
+	<classpathentry kind="lib" path="D:/dev/java/gui/HostTraceAnalyzer/lib/foundation-jcp-be_v18.0_subcr7101491-LOCAL.jar"/>
+	<classpathentry kind="lib" path="D:/dev/java/gui/HostTraceAnalyzer/lib/objectmodel-jcp-be_v17.1_int-LOCAL.jar"/>
+	<classpathentry kind="lib" path="D:/dev/java/gui/HostTraceAnalyzer/lib/uf_jse_api-1.7.12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
