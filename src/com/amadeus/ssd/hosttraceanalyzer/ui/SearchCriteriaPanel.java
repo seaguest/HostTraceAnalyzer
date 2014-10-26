@@ -153,7 +153,7 @@ public class SearchCriteriaPanel extends JPanel implements ActionListener{
 			Element element = new Element(i);
 			for(int j = 0; j<elementPanel.segments.size(); j++){
 				SegmentPanel segmentPanel = elementPanel.segments.get(j);
-				Segment segment = new Segment(j, segmentPanel.flight.getText().trim(), segmentPanel.rbd.getText().trim(), segmentPanel.corporateCode.getText().trim());
+				Segment segment = new Segment(j, segmentPanel.flight.getText().trim(), segmentPanel.rbd.getText().trim(), segmentPanel.corporateCode.getText().trim(), segmentPanel.fareBasis.getText().trim());
 				element.addSegment(segment); 
 			}
 			this.searchCriteria.addElement(element);

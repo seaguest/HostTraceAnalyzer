@@ -63,7 +63,7 @@ public class AboutPage extends JPanel {
 		textArea.setWrapStyleWord(true);
 		textArea.setTabSize(80);
 		textArea.setLineWrap(true);
-
+		
 		panel.setLayout(new BorderLayout()); // give your JPanel a BorderLayout
 
 		JScrollPane scroll = new JScrollPane(textArea); // place the JTextArea

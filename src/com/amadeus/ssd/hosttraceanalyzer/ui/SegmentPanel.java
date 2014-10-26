@@ -20,11 +20,12 @@ public class SegmentPanel extends JPanel implements ActionListener{
 
 	ElementPanel parent;
 	
-	public int index; 
+	int index; 
 	
 	JTextField flight;
 	JTextField rbd;
 	JTextField corporateCode;
+	JTextField fareBasis;
 
 	/**
 	 * Create the application.
@@ -43,11 +44,11 @@ public class SegmentPanel extends JPanel implements ActionListener{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {				
-        this.setPreferredSize(new Dimension(405, 96));
+        this.setPreferredSize(new Dimension(424, 96));
 		
 		JLabel lblFlight = new JLabel("Flight");		
 		JLabel lblRbd = new JLabel("RBD");		
-		JLabel lblCoporateCode = new JLabel("Coporate Code");
+		JLabel lblCoporateCode = new JLabel("coporateCode");
 		flight = new JTextField();
 		flight.setColumns(6);		
 		rbd = new JTextField();
@@ -57,6 +58,11 @@ public class SegmentPanel extends JPanel implements ActionListener{
 		
 		btnDelete.addActionListener(this);
 		
+		fareBasis = new JTextField();
+		fareBasis.setColumns(6);
+		
+		JLabel lblFarebasis = new JLabel("fareBasis");
+		
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -65,37 +71,43 @@ public class SegmentPanel extends JPanel implements ActionListener{
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(flight, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblFlight))
-					.addGap(27)
+					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(rbd, GroupLayout.PREFERRED_SIZE, 51, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblRbd))
-					.addGap(12)
+					.addGap(24)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(corporateCode, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblCoporateCode))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+							.addGap(12)
+							.addComponent(fareBasis, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+							.addComponent(btnDelete)
+							.addGap(20))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(6)
-							.addComponent(corporateCode, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(btnDelete))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGap(3)
-							.addComponent(lblCoporateCode)))
-					.addGap(110))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addComponent(lblFarebasis)
+							.addContainerGap())))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblFlight)
 						.addComponent(lblRbd)
 						.addComponent(lblCoporateCode)
-						.addComponent(lblFlight))
+						.addComponent(lblFarebasis))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(flight, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(rbd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnDelete)
 						.addComponent(corporateCode, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnDelete))
-					.addContainerGap(98, Short.MAX_VALUE))
+						.addComponent(fareBasis, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(14, Short.MAX_VALUE))
 		);
 		this.setLayout(groupLayout);
 	}
@@ -111,5 +123,4 @@ public class SegmentPanel extends JPanel implements ActionListener{
 			root.setLocationRelativeTo(null);
 		}
 	}
-
 }
